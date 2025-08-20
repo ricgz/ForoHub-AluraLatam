@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                 .sessionManagement(sm ->sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests.requestMatchers(HttpMethod.POST, "/login").permitAll() // solo permite login
+                                .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                                 .anyRequest().authenticated()   // solo permitimos las otras request si esta logueado
                 )
                 .addFilterBefore(securityFiler, UsernamePasswordAuthenticationFilter.class) // nuestro SecurityFilter debe ejecurrse primero.
