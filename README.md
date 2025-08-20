@@ -22,17 +22,15 @@ Cabe destacar que esta API no incluye una interfaz gráfica, ya que está orient
 [POST] /topicos ▶️ Registra un nuevo topico en el sistema.<br><br>
 [POST] /login ▶️ Permite reazlizar un login para poder utilzar los metodos anterior.
 
+##
 
-# [GET] Ver un topico exstente.
-- /topicos/{id} 
-
-## documentacion de Endopoint mediante Swagger-UI (Open-API)
-Una vez ejecutada la aplicacion, pueedes acceder a [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html), para revisar la documentacion autogenerada.
+## Documentación de Endopoint mediante Swagger-UI (Open-API)
+Una vez ejecutada la aplicación, puedes acceder a [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html), para revisar la documentación autogenerada.
 
 <img width="1678" height="889" alt="Documentacion Swagger-UI" src="https://github.com/user-attachments/assets/8f574c07-7822-4fea-a930-b8baffde3144" />
 
 
-## Espero que te sea util y un aporte!!!!
+## Espero que te sea útil y un gran aporte!!!!
 
 
-Buen desarrollo 😃!!!
+Éxito 😃!!!
