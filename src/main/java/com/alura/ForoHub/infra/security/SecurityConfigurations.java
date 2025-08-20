@@ -20,7 +20,7 @@ public class SecurityConfigurations {
 
     // inyectamos las dependencias...
     @Autowired
-    private SecurityFilter securityFiler;
+    private SecurityFilter securityFilter;
 
     /***
      * Aplicamos las politicas para modo REST y acceso mediante login
@@ -35,9 +35,10 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests.requestMatchers(HttpMethod.POST, "/login").permitAll() // solo permite login
                                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
-                                .anyRequest().authenticated()   // solo permitimos las otras request si esta logueado
+                                .anyRequest()
+                                .authenticated()   // solo permitimos las otras request si esta logueado
                 )
-                .addFilterBefore(securityFiler, UsernamePasswordAuthenticationFilter.class) // nuestro SecurityFilter debe ejecurrse primero.
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // nuestro SecurityFilter debe ejecurrse primero.
                 .build();
     }
 
