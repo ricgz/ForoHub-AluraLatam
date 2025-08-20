@@ -3,7 +3,7 @@ package com.alura.ForoHub.topico;
 public enum Cursos {
     TECNOLOGIA,
     JAVA,
-    MECANICA,
+    IA,
     DUDAS,
     OTRO
 }

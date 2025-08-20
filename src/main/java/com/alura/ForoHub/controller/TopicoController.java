@@ -18,23 +18,43 @@ public class TopicoController {
     @Autowired
     private TopicoRepository repository;
 
+    /**
+     * Lista todos los topicos en la BD
+     * @param paginacion
+     * @return
+     */
     @GetMapping
     public ResponseEntity<Page<DatosTopico>> listar(@PageableDefault(size = 10) Pageable paginacion) {
-        return ResponseEntity.ok(repository.findByTop10ByFecha_creacion(paginacion).map(DatosTopico::new));
+        return ResponseEntity
+                .ok(repository
+                        .findByTop10ByFecha(paginacion)
+                        .map(DatosTopico::new));
     }
 
-
+    /***
+     * Registra unnuevo topico en la BD, solo si esta no existe (titulo unico)
+     * @param datos
+     * @param uriComponentsBuilder
+     * @return
+     */
     @Transactional
     @PostMapping
     public ResponseEntity nuevo(@RequestBody @Valid DatosNuevoTopico datos, UriComponentsBuilder uriComponentsBuilder){
-        // agregar un nuevo topico en la base de datos
         var topico = new Topico(datos);
+
         repository.save(topico);
         var uri = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new DatosTopico(topico));
+        return ResponseEntity
+                .created(uri)
+                .body(new DatosTopico(topico));
     }
 
+    /***
+     * Muestra un topico en especifico
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity ver(@PathVariable Long id){
         var resultado = repository.getTopicoById(id);
@@ -42,12 +62,21 @@ public class TopicoController {
         if(resultado.isPresent()){
             var topico = resultado.get();
             var datosTopico = new DatosTopico(topico);
-            return ResponseEntity.ok(datosTopico);
+            return ResponseEntity
+                    .ok(datosTopico);
         }else{
-            return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .notFound()
+                    .build();
         }
     }
 
+    /***
+     * Actualiza los datos de un topico
+     * @param id
+     * @param datos
+     * @return
+     */
     @Transactional
     @PutMapping("/{id}")
     public ResponseEntity actualizar(@PathVariable Long id, @RequestBody DatosActualizarTopico datos){
@@ -55,13 +84,21 @@ public class TopicoController {
 
         if(resultado.isPresent()){
             var topico = resultado.get();
-            topico.actualizarInformacion(datos);
-            return ResponseEntity.ok(new DatosTopico(topico));
+            topico.actualizar(datos);
+            return ResponseEntity
+                    .ok(new DatosTopico(topico));
         }else{
-            return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .notFound()
+                    .build();
         }
     }
 
+    /***
+     * Elimina un topico de la BD por su ID
+     * @param id
+     * @return
+     */
     @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity eliminar(@PathVariable Long id){
@@ -69,9 +106,11 @@ public class TopicoController {
 
         if(resultado.isPresent()){
             repository.deleteById(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity
+                    .ok().build();
         }else{
-            return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .notFound().build();
         }
     }
 }

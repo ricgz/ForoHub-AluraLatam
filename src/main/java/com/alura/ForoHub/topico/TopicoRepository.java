@@ -14,7 +14,7 @@ public interface TopicoRepository extends JpaRepository<Topico, Long> {
             from Topico t
             order by t.creado ASC
             """)
-    Page<Topico> findByTop10ByFecha_creacion(Pageable paginacion);
+    Page<Topico> findByTop10ByFecha(Pageable paginacion);
 
     @Query("""
             select t

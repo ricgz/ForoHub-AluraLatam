@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDateTime;
 
@@ -38,10 +37,10 @@ public class Topico {
                 this.creado = LocalDateTime.now();
         }
 
-        public void actualizarInformacion(DatosActualizarTopico datos) {
+        public void actualizar(DatosActualizarTopico datos) {
                 if(datos.titulo() != null) this.titulo = datos.titulo();
                 if(datos.mensaje() != null) this.mensaje = datos.mensaje();
+                if(datos.estado() != null) this.estado = datos.estado();
                 if(datos.curso() != null) this.curso = datos.curso();
-
         }
 }

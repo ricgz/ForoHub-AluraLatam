@@ -1,9 +1,17 @@
 package com.alura.ForoHub.topico;
 
-import com.alura.ForoHub.usuario.Datoslogin;
-
 import java.time.LocalDateTime;
 
+/***
+ * DTO para mostrar al usuario los datos de un topico
+ * @param id
+ * @param usuario_id
+ * @param titulo
+ * @param mensaje
+ * @param curso
+ * @param estado
+ * @param creado
+ */
 public record DatosTopico(
     Long id,
     Long usuario_id,
